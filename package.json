@@ -1,0 +1,22 @@
+{
+  "name": "matter.js-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "matter.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rei-ne/matter.js-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rei-ne/matter.js-demo/issues"
+  },
+  "homepage": "https://github.com/Rei-ne/matter.js-demo#readme",
+  "dependencies": {
+    "matter-js": "^0.18.0"
+  }
+}

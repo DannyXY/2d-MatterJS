@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    margin: 10px;
+  }
+  
+  canvas {
+    margin: 20px auto;
+  }
+  
+  button {
+    color: white;
+    background: orange;
+    border: none;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 1.2em;
+    font-family: 'Lato';
+    margin: 10px;
+    cursor: pointer;
+    outline: none;
+  }
