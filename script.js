@@ -26,7 +26,12 @@ var leftWall = Bodies.rectangle(50, 600, 20, 1200, { isStatic: true });
 var rightWall = Bodies.rectangle(1200, 600, 20, 1200, { isStatic: true });
 var bottomWall = Bodies.rectangle(600, 600, 1400, 20, { isStatic: true });
 
-var box = Bodies.rectangle(90, 120, 70, 70, {
+/* @dev @Jayphire */
+// FETCH METADATA
+// MAP METADATA TO FORM BODIES DEPENDING ON THEIR ATTRIBUTES
+// CREATE NEW PLAYER ARR FROM THE MAP
+
+var player = Bodies.rectangle(90, 120, 70, 70, {
     // render:{
 
     //     sprite : {
@@ -35,7 +40,7 @@ var box = Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var box2 = Bodies.rectangle(90, 120, 70, 70, {
+var player2 = Bodies.rectangle(90, 120, 70, 70, {
     // render:{
 
     //     sprite : {
@@ -44,7 +49,7 @@ var box2 = Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var box3= Bodies.rectangle(90, 120, 70, 70, {
+var player3= Bodies.rectangle(90, 120, 70, 70, {
     // render:{
 
     //     sprite : {
@@ -53,18 +58,17 @@ var box3= Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var box4 = Bodies.rectangle(90, 120, 70, 70, {
+var player4 = Bodies.rectangle(90, 120, 70, 70, {
     // render:{
-
     //     sprite : {
-    //         texture: 'https://github.com/DannyXY/chia-blockchain-test/blob/main/fighter-img/rsz_14.jpg?raw=true',
+    //         texture: 'https://github.com/DannyXY/chia-blockchain-test/blob/main/fighter-img/rsz_14.jpg?raw=true', /* I used the image of the NFT to form a texture */
     //         visible:true
     //     }
     // }
 });
 
-const boxArr = [box,box2, box3,box4]
-World.add(engine.world, [topWall, leftWall, rightWall, bottomWall, box, box2, box3, box4]);
+const playerArr = [player,player2, player3,player4]
+World.add(engine.world, [topWall, leftWall, rightWall, bottomWall, ...playerArr]);
 
 Matter.Runner.run(engine);
 
@@ -79,21 +83,21 @@ setInterval(() => {
     if(booleanVal) {
 
         for(let i = 0; i<10; i++) {
-            Body.setVelocity( boxArr[i], {x: 20, y: -20});
-            Body.setAngularVelocity( boxArr[i], Math.PI/6);
+            Body.setVelocity( playerArr[i], {x: 20, y: -20});
+            Body.setAngularVelocity( playerArr[i], Math.PI/6);
         
         }
     } else {
         for(let i = 0; i<10; i++) {
-            Body.setVelocity( boxArr[i], {x: -20, y: 20});
-            Body.setAngularVelocity( boxArr[i], -Math.PI/6);
+            Body.setVelocity( playerArr[i], {x: -20, y: 20});
+            Body.setAngularVelocity( playerArr[i], -Math.PI/6);
         
         }
     }
-    let randNum = Math.round(Math.random(0,boxArr.length))
-    World.remove(boxArr[randNum])
-    // boxArr[randNum].visibility(false)
-    boxArr.pop(randNum)
+    let randNum = Math.round(Math.random(0,playerArr.length))
+    World.remove(playerArr[randNum])
+    // playerArr[randNum].visibility(false)
+    playerArr.pop(randNum)
 }, 1000)
 
 
