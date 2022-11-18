@@ -31,7 +31,7 @@ var bottomWall = Bodies.rectangle(600, 600, 1400, 20, { isStatic: true });
 // MAP METADATA TO FORM BODIES DEPENDING ON THEIR ATTRIBUTES
 // CREATE NEW PLAYER ARR FROM THE MAP
 
-var player = Bodies.rectangle(90, 120, 70, 70, {
+var player = Bodies.rectangle(90, 120, 90, 90, {
     // render:{
 
     //     sprite : {
@@ -40,7 +40,7 @@ var player = Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var player2 = Bodies.rectangle(90, 120, 70, 70, {
+var player2 = Bodies.rectangle(180, 120, 90, 90, {
     // render:{
 
     //     sprite : {
@@ -49,7 +49,7 @@ var player2 = Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var player3= Bodies.rectangle(90, 120, 70, 70, {
+var player3= Bodies.rectangle(270, 120, 90, 90, {
     // render:{
 
     //     sprite : {
@@ -58,7 +58,7 @@ var player3= Bodies.rectangle(90, 120, 70, 70, {
     //     }
     // }
 });
-var player4 = Bodies.rectangle(90, 120, 70, 70, {
+var player4 = Bodies.rectangle(360, 120, 90, 90, {
     // render:{
     //     sprite : {
     //         texture: 'https://github.com/DannyXY/chia-blockchain-test/blob/main/fighter-img/rsz_14.jpg?raw=true', /* I used the image of the NFT to form a texture */
@@ -77,28 +77,32 @@ Render.run(render);
 const linear = document.getElementById('linear')
 const angular = document.getElementById('angular')
 
-setInterval(() => {
-    
-    const booleanVal = Math.random() < 0.5
-    if(booleanVal) {
+const startbtn = document.getElementById('start')
 
-        for(let i = 0; i<10; i++) {
-            Body.setVelocity( playerArr[i], {x: 20, y: -20});
-            Body.setAngularVelocity( playerArr[i], Math.PI/6);
-        
-        }
-    } else {
-        for(let i = 0; i<10; i++) {
-            Body.setVelocity( playerArr[i], {x: -20, y: 20});
-            Body.setAngularVelocity( playerArr[i], -Math.PI/6);
-        
-        }
-    }
-    let randNum = Math.round(Math.random(0,playerArr.length))
-    World.remove(playerArr[randNum])
-    // playerArr[randNum].visibility(false)
-    playerArr.pop(randNum)
-}, 1000)
+startbtn.addEventListener("click", function() {
+    if(startbtn.textContent === "Start Fight") {
+        const interval = setInterval(() => {
+            const booleanVal = Math.random() < 0.5
+            if(booleanVal) {
+                for(let i = 0; i<10; i++) {
+                    Body.setVelocity( playerArr[i], {x: 20, y: -20});
+                    Body.setAngularVelocity( playerArr[i], Math.PI/6);
+                    let randNum = Math.round(Math.random() * playerArr.length)
+                    Body.scale(playerArr[randNum], 0.9 , 0.9)
+                                   
+                }
+            } else {
+                for(let i = 0; i<10; i++) {
+                    Body.setVelocity( playerArr[i], {x: -20, y: 20});
+                    Body.setAngularVelocity( playerArr[i], -Math.PI/6);
+                
+                }
+            }
+        }, 1000)
+        startbtn.textContent  = "End game"
+    } 
+})
+
 
 
 
